@@ -58,8 +58,11 @@ userSchema.methods.generateToken = async function () {
         );
     } catch (error) {
         console.log(error);
-
     }
+}
+
+userSchema.methods.isValidPassword = async function (password) {
+    return await bcrypt.compare(password,this.password)
 }
 
 const User = model("User", userSchema);
